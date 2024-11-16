@@ -1,0 +1,26 @@
+spring:
+  mail:
+    configs:
+      qq:
+        host: smtp.qq.com
+        port: 465
+        username: 1215349793@qq.com
+        password: wrmautnwcgmlieai
+        properties:
+          mail:
+            smtp:
+              ssl:
+                enable: true
+        suffix: "@qq.com"
+      gmail:
+        host: smtp.gmail.com
+        port: 465
+        username: 1215349793@gmail.com
+        password: 1215349793
+        properties:
+          mail:
+            smtp:
+              ssl:
+                enable: true
+        suffix: "@gmail.com"
+
