@@ -20,7 +20,7 @@ class MailApplicationTests {
         message.setSubject("青藤招新程序");
 		message.setText("hello");
         //设置收件人
-        message.setTo("1215349793@qq.com");
+        message.setTo("tf0800638gangc@163.com");
         //设置发件人
         message.setFrom("1215349793@qq.com");
 		sender.send(message);

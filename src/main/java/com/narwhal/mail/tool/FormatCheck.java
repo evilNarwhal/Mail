@@ -1,5 +1,7 @@
 package com.narwhal.mail.tool;
 
+import com.narwhal.mail.constant.FormatType;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,7 +21,7 @@ public class FormatCheck {
     }
 
     //邮箱+后缀校验
-     public static String EmailFormat(FormatType formatType,String suffix) {
+     public static String EmailFormat(FormatType formatType, String suffix) {
          String type = switch (formatType) {
              case NUM_EMAIL -> "[0-9]";
              case GENERIC_EMAIL -> "[A-Za-z0-9+_.-]";

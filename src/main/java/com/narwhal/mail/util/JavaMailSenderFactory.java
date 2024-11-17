@@ -22,17 +22,36 @@ public class JavaMailSenderFactory {
             throw new IllegalArgumentException("com.narwhal.mail.properties.MailProperties or Configs cannot be null");
         }
 
-        for (MailProperties.MailConfig config : mailProperties.getConfigs().values() ) {
+        for (Map.Entry<String, MailProperties.MailConfig> entry : mailProperties.getConfigs().entrySet() ) {
             try {
+                String name = entry.getKey();
+                MailProperties.MailConfig config = entry.getValue();
                 String suffix = config.getSuffix();
                 JavaMailSender javaMailSender = createJavaMailSender(config);
                 senders.put(suffix, javaMailSender);
+                senders.put(name, javaMailSender);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
-    //创建自定义邮箱
+    //通过邮箱参数的后缀获取邮箱服务器
+    public JavaMailSender getSenderBySuffix(String email){
+        if (email == null)
+            throw new IllegalArgumentException("email cannot be null");
+        String suffix = email.substring(email.lastIndexOf("@"));
+        return senders.get(suffix);
+    }
+    //根据配置文件中的邮箱服务器名称获取邮箱服务器
+    public JavaMailSender getSender(String name)
+    {
+        try {
+            return senders.get(name);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("name not found");
+        }
+    }
+    //创建自定义邮箱发送器
     public JavaMailSender createJavaMailSender(MailProperties.MailConfig config){
             JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
             javaMailSender.setHost(config.getHost());
@@ -47,12 +66,5 @@ public class JavaMailSenderFactory {
         if (suffix == null)
             throw new IllegalArgumentException("suffix cannot be null");
         senders.put(suffix, javaMailSender);
-    }
-    //获取邮箱服务器
-    public JavaMailSender getSender(String email){
-        if (email == null)
-            throw new IllegalArgumentException("email cannot be null");
-        String suffix = email.substring(email.lastIndexOf("@"));
-        return senders.get(suffix);
     }
 }

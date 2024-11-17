@@ -4,8 +4,8 @@ spring:
       qq:
         host: smtp.qq.com
         port: 465
-        username: 1215349793@qq.com
-        password: wrmautnwcgmlieai
+        username: xxxxxxxxx@qq.com
+        password: xxxxxxxxxxxxx
         properties:
           mail:
             smtp:
@@ -15,8 +15,8 @@ spring:
       gmail:
         host: smtp.gmail.com
         port: 465
-        username: 1215349793@gmail.com
-        password: 1215349793
+        username: xxxxxx@gmail.com
+        password: xxxxxxxxxx
         properties:
           mail:
             smtp:
