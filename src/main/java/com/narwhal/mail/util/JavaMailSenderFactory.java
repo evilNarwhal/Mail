@@ -28,7 +28,8 @@ public class JavaMailSenderFactory {
                 MailProperties.MailConfig config = entry.getValue();
                 String suffix = config.getSuffix();
                 JavaMailSender javaMailSender = createJavaMailSender(config);
-                senders.put(suffix, javaMailSender);
+                if(suffix != null)
+                    senders.put(suffix, javaMailSender);
                 senders.put(name, javaMailSender);
             } catch (Exception e) {
                 e.printStackTrace();
