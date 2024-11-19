@@ -21,7 +21,7 @@ public class FormatCheck {
     }
 
     //邮箱+后缀校验
-     public static String EmailFormat(FormatType formatType, String suffix) {
+     private static String EmailFormat(FormatType formatType, String suffix) {
          String type = switch (formatType) {
              case NUM_EMAIL -> "[0-9]";
              case GENERIC_EMAIL -> "[A-Za-z0-9+_.-]";
@@ -38,12 +38,26 @@ public class FormatCheck {
      }
 
      //通用邮箱格式校验
-     public static String EmailFormat(FormatType formatType) {
+     private static String EmailFormat(FormatType formatType) {
          return switch (formatType) {
              case NUM_EMAIL -> "\\d+@[A-Za-z0-9.-]";
              case GENERIC_EMAIL -> "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
              case LETTER_EMAIL -> "^[a-zA-Z]+@[a-zA-Z]+\\.[a-zA-Z]{2,}$";
          };
+     }
+
+     public static boolean EmailCheck(String email, FormatType formatType) {
+         String regex = EmailFormat(formatType);
+         Pattern compile = Pattern.compile(regex);
+         Matcher matcher = compile.matcher(email);
+         return matcher.matches();
+     }
+
+     public static boolean EmailCheck(String email, FormatType formatType, String suffix) {
+         String regex = EmailFormat(formatType, suffix);
+         Pattern compile = Pattern.compile(regex);
+         Matcher matcher = compile.matcher(email);
+         return matcher.matches();
      }
 
 }
