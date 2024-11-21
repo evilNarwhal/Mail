@@ -1,1 +1,1 @@
-com.narwhal.mail.config.MailConfiguration
+com.narwhal.mail.config.JavaMailSenderConfiguration

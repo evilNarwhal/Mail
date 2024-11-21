@@ -12,7 +12,6 @@ import java.util.Properties;
 @ConfigurationProperties(prefix = "spring.mail")
 public class MailProperties {
     private Map<String, MailConfig> configs;
-
     @Data
     public static class MailConfig {
         private String host;
@@ -20,8 +19,6 @@ public class MailProperties {
         private String username;
         private String password;
         private Properties properties = new Properties();
-        // 对应的邮箱后缀
-        private String suffix;
     }
 }
 

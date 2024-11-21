@@ -29,18 +29,11 @@
                     smtp:
                       ssl:
                         enable: true
-                suffix: "@gmail.com"
-其中suffix为邮箱后缀，如：@qq.com,用于接收邮箱账号并通过后缀匹配对应的sender
-### 核心类：JavaMailSenderFactory
-通过自动注入JavaMailSenderFactory，即可调用相应方法获取到对应的JavaMailSender
-#### getSenderBySuffix(String email)
-通过邮箱参数的后缀获取邮箱服务器
-#### getSender(String name)
-通过配置文件中的名称获取邮箱服务器（如示例中的qq，gmail等）
-#### createJavaMailSender(MailProperties.MailConfig config)
-创建自定义sender，简化spring-mail的原装配方法
-#### setMappings(String suffix, JavaMailSender javaMailSender)
-设置自定义后缀与邮箱服务器的关联（后缀不能与配置文件中出现过的相同）
+### 核心类：JavaMailSenderConditional
+用于根据配置文件生成JavaMailSender
+建立邮箱服务器名称与JavaMailSender的map集合并注入到Spring容器中
+
+
 ### 工具类： FormatCheck
 用于不同组成不同后缀邮箱格式校验
 #### 提供的组成：
